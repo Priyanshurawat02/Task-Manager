@@ -23,15 +23,25 @@ export default function TaskManager() {
     setInputValue("");
   }
 
+const deleteTask=(id:number)=>{
+    const newTasks = tasks.filter((task) =>task.id !== id);
+    setTasks(newTasks);
+}
+
     return (
         <div>
            <input 
            value={inputValue}
            onChange={(e)=>setInputValue(e.target.value)}/>
            {tasks.map((task) =>(
-                <p key={task.id}>{task.title}</p>
+                <div key={task.id}>
+                <p >{task.title}</p>
+                <button onClick={()=>deleteTask(task.id)}>Delete</button>
+                </div>
             ))}
+        
             <button onClick={addTask}>Add</button>
+             
         </div>
     )
 }
