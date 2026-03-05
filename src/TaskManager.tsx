@@ -7,11 +7,7 @@ interface Task {
 }
 
 export default function TaskManager() {
-    const[tasks, setTasks] =useState<Array<Task>>( [{
-                id:1,
-                title: "Sleep",
-                isCompleted: true}
-            ]);
+    const[tasks, setTasks] =useState<Array<Task>>([]);
 
     const [inputValue, setInputValue] =useState<string>("");
 
