@@ -28,6 +28,21 @@ const deleteTask=(id:number)=>{
     setTasks(newTasks);
 }
 
+const toggleTask=(id:number) =>{
+    const newTasks= tasks.map((task)=>{
+        if(task.id ===id){
+            return {
+                ...task,
+                isCompleted:!task.isCompleted
+            };
+        }else{
+            return task;
+        }
+    });
+        setTasks(newTasks);
+    }
+
+
     return (
         <div>
            <input 
@@ -35,12 +50,13 @@ const deleteTask=(id:number)=>{
            onChange={(e)=>setInputValue(e.target.value)}/>
            {tasks.map((task) =>(
                 <div key={task.id}>
-                <p >{task.title}</p>
+                <p onClick={()=> toggleTask(task.id)}
+                    style={{textDecoration: task.isCompleted ? "line-through":"none"}}>{task.title}</p>
                 <button onClick={()=>deleteTask(task.id)}>Delete</button>
                 </div>
             ))}
         
-            <button onClick={addTask}>Add</button>
+            <button onClick={addTask} disabled={!inputValue.trim()}>Add</button>
              
         </div>
     )
